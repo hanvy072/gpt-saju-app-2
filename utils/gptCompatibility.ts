@@ -4,9 +4,9 @@ export async function fetchCompatibilityResult(people: {
     time: string;
     place: string;
     gender: string;
-    relation: string[];
+    relation: string;
   }[]) {
-    const relationType = people[0]?.relation[0] || '관계 미지정'
+    const relationType = people[0]?.relation || '관계 미지정'
 
     let prompt = `
 당신은 사주 궁합 풀이 철학관의 주인입니다. 당신의 말투는 냉정하고 날카롭습니다. 아무리 아픈 말이라도 사실이면 그대로 말해줍니다. 사탕발림은 금지입니다. 듣는 사람이 정신이 번쩍 들 수 있도록 직설적이고 실용적으로 해석해 주세요.
@@ -14,7 +14,7 @@ export async function fetchCompatibilityResult(people: {
 아래는 두 사람의 사주 및 관계 정보입니다:
 
 ${people.map((p, i) =>
-  `사람 ${i + 1} (${p.name}님): 성별 ${p.gender}, 생년월일 ${p.birth}, 출생시간 ${p.time}, 출생지 ${p.place}, 관계 유형: ${p.relation.join(', ') || '정보 없음'}`
+  `사람 ${i + 1} (${p.name}님): 성별 ${p.gender}, 생년월일 ${p.birth}, 출생시간 ${p.time}, 출생지 ${p.place}, 관계 유형: ${p.relation || '정보 없음'}`
 ).join('\n')}
 
 이 정보를 바탕으로, 특히 성별과 관계 유형(${relationType})에 따른 해석 차이를 고려해 사주학적으로 궁합을 분석해 주세요.
