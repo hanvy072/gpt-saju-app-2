@@ -3,8 +3,17 @@ import Link from 'next/link'
 import { fetchCompatibilityResult } from '../utils/gptCompatibility'
 import { useRouter } from 'next/router'
 
+type Person = {
+  name: string;
+  birth: string;
+  time: string;
+  place: string;
+  gender: string;
+  relation: string;
+}
+
 export default function CompatibilityInputPage() {
-    const [people, setPeople] = useState<{ name: string; birth: string; time: string; place: string; gender: string; relation: string }[]>([
+    const [people, setPeople] = useState<Person[]>([
         { name: '', birth: '', time: '', place: '', gender: '', relation: '' },
     ])
 
@@ -31,9 +40,9 @@ export default function CompatibilityInputPage() {
     setPeople(people.filter((_, i) => i !== index))
   }
 
-  const updateField = (index: number, field: string, value: string) => {
-    const updated: typeof people = [...people]
-    (updated[index] as any)[field] = value
+  const updateField = (index: number, field: keyof Person, value: string) => {
+    const updated: Person[] = [...people]
+    updated[index] = { ...updated[index], [field]: value }
     setPeople(updated)
   }
 
