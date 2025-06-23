@@ -8,7 +8,7 @@ export default function CompatibilityInputPage() {
     { name: '', birth: '', time: '', place: '', gender: '', relation: [] as string[] },
     ])
 
-  const [relation, setRelation] = useState<string[]>([])
+  const [relation, setRelation] = useState<string>('')  // changed from string[] to string
   const [submitted, setSubmitted] = useState(false)
 
   const [usageCount, setUsageCount] = useState(0)
@@ -86,7 +86,7 @@ export default function CompatibilityInputPage() {
         pathname: '/compatibility-result',
         query: {
           result: encodeURIComponent(gptResult),
-          relation: relation[0], // include selected relation type
+          relation: relation, // changed from relation[0]
         },
       })
     } catch (err) {
@@ -113,8 +113,8 @@ export default function CompatibilityInputPage() {
                 type="radio"
                 name="relation"
                 value={type}
-                checked={relation[0] === type}
-                onChange={() => setRelation([type])}
+                checked={relation === type}  // changed from relation[0] === type
+                onChange={() => setRelation(type)}  // changed from setRelation([type])
                 className="accent-[#B26BFF]"
               />
               {type}
