@@ -1,4 +1,5 @@
 export async function fetchSajuResult(userInput: {
+    name: string
     birth: string
     time: string
     place: string
