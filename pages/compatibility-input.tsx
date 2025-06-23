@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 
 export default function CompatibilityInputPage() {
     const [people, setPeople] = useState([
-    { name: '', birth: '', time: '', place: '', gender: '', relation: [] as string[] },
+    { name: '', birth: '', time: '', place: '', gender: '', relation: '' },
     ])
 
   const [relation, setRelation] = useState<string>('')  // changed from string[] to string
@@ -23,7 +23,7 @@ export default function CompatibilityInputPage() {
   }, [])
 
   const addPerson = () => {
-    setPeople([...people, { name: '', birth: '', time: '', place: '', gender: '', relation: [] }])
+    setPeople([...people, { name: '', birth: '', time: '', place: '', gender: '', relation: '' }])
   }
 
   const removePerson = (index: number) => {
