@@ -32,7 +32,7 @@ export default function CompatibilityInputPage() {
   }
 
   const updateField = (index: number, field: string, value: string) => {
-    const updated = [...people]
+    const updated: typeof people = [...people]
     (updated[index] as any)[field] = value
     setPeople(updated)
   }
