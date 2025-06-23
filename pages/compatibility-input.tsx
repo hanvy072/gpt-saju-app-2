@@ -38,12 +38,8 @@ export default function CompatibilityInputPage() {
   }
 
   const toggleRelation = (value: string) => {
-    setRelation(prev =>
-      prev.includes(value)
-        ? prev.filter(v => v !== value)
-        : [...prev, value]
-    )
-  }
+    setRelation(value);
+  };
 
   const [result, setResult] = useState<{ title: string; content: string }[]>([])
   const [loading, setLoading] = useState(false)
